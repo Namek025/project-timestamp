@@ -24,6 +24,16 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/", (req,res) => {
+  
+  var actualDate = new Date();
+  var utc = actualDate.toUTCString();
+  var unix = actualDate.getTime();
+    
+  res.json({utc, unix});  
+  
+});
+
 app.get("/api/:date?", (req, res) => {
 
   var inputDate = req.params.date;
@@ -43,15 +53,6 @@ app.get("/api/:date?", (req, res) => {
 
 });
 
-app.get("/api/", (req,res) => {
-  
-  var actualDate = new Date();
-  var utc = actualDate.toUTCString();
-  var unix = actualDate.getTime();
-    
-  res.json({utc, unix});  
-  
-});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
